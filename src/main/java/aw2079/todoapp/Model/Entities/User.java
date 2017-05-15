@@ -1,8 +1,13 @@
+/*
+ *  MIT License
+ */
 package aw2079.todoapp.Model.Entities;
 
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,7 +27,10 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
-    private String alias;
+    private String nickname;
     private String email;
+
+    @OneToMany(mappedBy = "user")
+    private List<TaskList> taskList;
 
 }

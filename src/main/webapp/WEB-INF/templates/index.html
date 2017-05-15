@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1 th:text="'In Server Visibility - test'">Hello World! - Test file</h1>
+        <form action="add">
+            <input type="text" name="t1" th:name="s1"/><br/>
+            <input type="text" name="t2" th:name="s2"/><br/>
+            <input type="submit" value="Submit" th:value="'Server Submit'" />
+        </form>
     </body>
 </html>

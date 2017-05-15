@@ -1,4 +1,7 @@
-package aw2079.todoapp;
+/*
+ *  MIT License
+ */
+package aw2079.todoapp.Configuration;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
