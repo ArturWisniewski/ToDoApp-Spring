@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "aw2079.todoapp.Controllers")
+@ComponentScan(basePackages = {"aw2079.todoapp.Controllers", "aw2079.todoapp.Services"})
 class ApplicationConfig {
 
 }

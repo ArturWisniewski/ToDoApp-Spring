@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body>
+        <h1 th:text="'In Server Visibility - test'">Hello World! - Test file</h1>
+        <form action="calculated">
+            <input type="text" name="t1" th:name="s1"/><br/>
+            <input type="text" name="t2" th:name="s2"/><br/>
+            <input type="radio" name="r1" value="add" checked="checked"/>+
+            <input type="radio" name="r1" value="substract"/>-<br/>
+            <input type="radio" name="r1" value="multiply"/>*
+            <input type="radio" name="r1" value="divide"/>/<br/>
+            <input type="submit" value="Submit" th:value="'='" />
+        </form>
+    </body>
+</html>
