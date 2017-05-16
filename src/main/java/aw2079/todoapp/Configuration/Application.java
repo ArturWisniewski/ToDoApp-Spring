@@ -32,5 +32,5 @@ public class Application implements WebApplicationInitializer {
         dispatcher.addMapping("/");
 
     }
-
 }
+

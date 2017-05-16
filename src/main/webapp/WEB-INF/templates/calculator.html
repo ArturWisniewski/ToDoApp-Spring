@@ -5,15 +5,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     </head>
     <body>
-        <h1 th:text="'In Server Visibility - test'">Hello World! - Test file</h1>
-        <form action="calculated">
-            <input type="text" name="t1" th:name="s1"/><br/>
-            <input type="text" name="t2" th:name="s2"/><br/>
+        <h1 th:text="'Simple Int Calculator'">TITLE</h1>
+        <a href="index"> <button>Back</button></a><br/><br/>
+        <form action="calculator" method="POST">
+            <input type="text" name="t1" th:name="s1" th:value="${s1}"/><br/>
+            <input type="text" name="t2" th:name="s2" th:value="${s2}"/><br/>
             <input type="radio" name="r1" value="add" checked="checked"/>+
             <input type="radio" name="r1" value="substract"/>-<br/>
             <input type="radio" name="r1" value="multiply"/>*
             <input type="radio" name="r1" value="divide"/>/<br/>
             <input type="submit" value="Submit" th:value="'='" />
         </form>
+        <br/>
+        <div th:text="'ans: '+${ans}">ans: 123456</div>
     </body>
 </html>

@@ -23,17 +23,23 @@ public class CalculatorController {
     @Autowired
     ICalculatorService service;
 
-    @RequestMapping("/calculator")
+    @RequestMapping(value = "/calculator", method = RequestMethod.GET)
     public String helloWorld(Model model) {
-        model.addAttribute("message", "Hello World!");
+        model.addAttribute("ans", 0);
+        model.addAttribute("s1", "");
+        model.addAttribute("s2", "");
         return "calculator";
     }
 
-    @RequestMapping(value = "/calculated", method = RequestMethod.GET)
+    @RequestMapping(value = "/calculator", method = RequestMethod.POST)
     public String add(Model model, HttpServletRequest request) {
-        String ans = service.calculation(request.getParameter("s1"), request.getParameter("s2"), request.getParameter("r1"));
+        String s1 = request.getParameter("s1");
+        String s2 = request.getParameter("s2");
+        String ans = service.calculation(s1, s2, request.getParameter("r1"));
         model.addAttribute("ans", ans);
-        return "calculated";
+        model.addAttribute("s1", s1);
+        model.addAttribute("s2", s2);
+        return "calculator";
     }
 
 }

@@ -51,7 +51,7 @@ public class CalculatorService implements ICalculatorService {
                     return "No operation selected";
             }
         } catch (Exception e) {
-            return "Wrong data, please go back.";
+            return "Wrong data.";
         }
 
     }
