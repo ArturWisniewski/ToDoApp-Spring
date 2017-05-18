@@ -27,11 +27,11 @@ public class TaskList {
     @GeneratedValue
     private Long id;
     private String name;
-    
+
     @ManyToOne
     private User user;
-    
-    @OneToMany(mappedBy = "taksList")
-    private List<Task> task;
+
+    @OneToMany(mappedBy = "taskList")
+    private List<Task> tasks;
 
 }

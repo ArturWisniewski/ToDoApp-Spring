@@ -34,5 +34,5 @@ public class Task {
     private TaskList taskList;
     
     @ManyToOne
-    private String type;
+    private Type type;
 }

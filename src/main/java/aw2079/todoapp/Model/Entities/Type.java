@@ -23,7 +23,7 @@ public class Type {
 
     @Id
     private String type;
-    
+
     @OneToMany(mappedBy = "type")
     private List<Task> task;
 }
