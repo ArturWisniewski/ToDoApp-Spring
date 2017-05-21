@@ -3,11 +3,11 @@
  */
 package aw2079.todoapp.Configuration;
 
-import aw2079.todoapp.Configuration.DispatcherConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -20,8 +20,7 @@ public class Application implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext container) {
 
-        AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
-        rootContext.register(ApplicationConfig.class);
+        WebApplicationContext rootContext = getContext();
         container.addListener(new ContextLoaderListener(rootContext));
 
         AnnotationConfigWebApplicationContext dispatcherContext = new AnnotationConfigWebApplicationContext();
@@ -32,5 +31,11 @@ public class Application implements WebApplicationInitializer {
         dispatcher.addMapping("/");
 
     }
-}
 
+    private AnnotationConfigWebApplicationContext getContext() {
+        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
+        context.register(ApplicationConfig.class);
+        return context;
+    }
+
+}

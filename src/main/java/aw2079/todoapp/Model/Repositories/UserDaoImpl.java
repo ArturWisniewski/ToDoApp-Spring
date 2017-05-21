@@ -1,22 +1,33 @@
 /*
  * MIT License
  */
-package aw2079.todoapp.Model.Repository;
+package aw2079.todoapp.Model.Repositories;
 
 import aw2079.todoapp.Model.Entities.User;
 import java.io.Serializable;
+import javax.transaction.Transactional;
+import org.hibernate.IdentifierLoadAccess;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author Artur Wiśniewski
  */
+@Repository
+@Transactional
 public class UserDaoImpl implements UserDao{
 
-    @Autowired
+   
     private SessionFactory sessionFactory;
+   
+    @Autowired
+    public UserDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+    
     
     protected Session getSession(){
         return this.sessionFactory.getCurrentSession();
@@ -29,7 +40,12 @@ public class UserDaoImpl implements UserDao{
 
     @Override
     public User findById(Serializable id) {
-        return getSession().get(User.class, id);
+        return (User) getSession().get(User.class, id);
+    }
+    
+    public User first(){
+        Object byId = getSession().byId(User.class).load(1L);
+        return byId==null? new User(): (User) byId;
     }
     
 }

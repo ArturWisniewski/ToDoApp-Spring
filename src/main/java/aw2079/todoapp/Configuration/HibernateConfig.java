@@ -13,7 +13,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource. DriverManagerDataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -30,8 +31,9 @@ public class HibernateConfig {
     @Autowired
     private Environment env;
 
-    @Bean
+    @Bean("dataSource")
     public DataSource getDataSource() {
+//        BasicDataSource dataSource = new BasicDataSource();
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getRequiredProperty("datasource.driverClassName"));
         dataSource.setUrl(env.getRequiredProperty("datasource.url"));
@@ -52,19 +54,19 @@ public class HibernateConfig {
         };
     }
 
-    @Bean
+    @Bean("sessionFactory")
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(getDataSource());
         sessionFactory.setPackagesToScan(new String[]{"aw2079.todoapp.Model.Entities"});
         sessionFactory.setHibernateProperties(getHibernateProperties());
-
         return sessionFactory;
     }
 
     @Bean
     @Autowired
     public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+        System.out.println(sessionFactory);
         HibernateTransactionManager txManager = new HibernateTransactionManager();
         txManager.setSessionFactory(sessionFactory);
         return txManager;
